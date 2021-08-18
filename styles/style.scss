@@ -1,5 +1,13 @@
 $backgroundColor: #363636;
+$textColor: white;
 
 html {
     background-color: $backgroundColor;
 }
+
+body {
+    font-family: 'Recursive';
+    color: $textColor;
+}
+
+
