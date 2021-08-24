@@ -1,3 +1,6 @@
+<meta http-equiv = "refresh" content = "3; url=https://www.bryceblankinship.com/welcome.html"/>
+
+
 Hey, @BryceBlankinship here.
 If you're reading this you probably want to know something about me...
 
