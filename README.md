@@ -1,7 +1,9 @@
 Hey, @BryceBlankinship here.
 If you're reading this you probably want to know something about me...
 
-I am 19 years old and mainly a self taught programmer (a few college courses here and there)
+I am a 19 year old programmer with some college CS courses under my belt.
+
+Click <a href="https://www.bryceblankinship.com/welcome.html">here</a> to go to my portfolio.
 
 My current strengths:
 - Java
@@ -14,4 +16,3 @@ What I'm working on improving:
 - CSS
 - Node.JS
 
-Click <a href="/welcome.html">here</a> to go to my portfolio.
