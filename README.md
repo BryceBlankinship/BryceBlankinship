@@ -14,3 +14,4 @@ What I'm working on improving:
 - CSS
 - Node.JS
 
+Click <a href="/welcome.html">here</a> to go to my portfolio.
