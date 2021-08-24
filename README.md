@@ -6,11 +6,11 @@ I am 19 years old and mainly a self taught programmer (a few college courses her
 My current strengths:
 - Java
 - C
-
-What I'm working on improving:
 - Python
 - MySQL
+
+What I'm working on improving:
 - HTML
 - CSS
 - Node.JS
-- and possibly C#
+
