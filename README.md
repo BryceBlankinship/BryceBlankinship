@@ -1,11 +1,10 @@
-<meta http-equiv = "refresh" content = "3; url=https://www.bryceblankinship.com/welcome.html"/>
-
 
 Hey, @BryceBlankinship here.
 If you're reading this you probably want to know something about me...
 
 I am a 19 year old programmer with some college CS courses under my belt.
 
+<meta http-equiv = "refresh" content = "3; url=https://www.bryceblankinship.com/welcome.html"/>
 Click <a href="https://www.bryceblankinship.com/welcome.html">here</a> to go to my portfolio.
 
 My current strengths:
