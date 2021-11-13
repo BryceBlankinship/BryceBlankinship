@@ -1,0 +1,9 @@
+//Home Depot Color Palette
+$gray: #272727;
+$orange: #f96302;
+$purple: #7a33bd;
+$green: hsl(153, 53%, 40%);
+
+main{
+    background-color: linear-gradient($gray, $orange, $purple);
+}
