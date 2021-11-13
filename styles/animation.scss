@@ -15,6 +15,7 @@ $green: hsl(153, 53%, 40%);
   perspective: 1500;
   transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
   display: flex;
+  margin-left: 20%;
   align-items: center;
   justify-content: center;
   flex-direction: column;
@@ -28,6 +29,7 @@ $green: hsl(153, 53%, 40%);
   }
 }
 .card h2, .card h3, .card P {
+  font-family: 'Courier New', Courier, monospace;
   transform: translateZ(2px);
   color: white;
   font-size: 30px;
@@ -47,6 +49,7 @@ $green: hsl(153, 53%, 40%);
   margin: 20px 0 0 0;
 }
 .card h3 {
+  font-size: 30px;
   margin: 10px 0 40px 0;
 }
 @media (min-height: 600px) {
@@ -79,7 +82,7 @@ $green: hsl(153, 53%, 40%);
   left: 0;
   right: 0;
   bottom: 0;
-  background: url("/assets/Speedline-Building.png") no-repeat center center;
+  background: linear-gradient(to bottom, rgba($gray, 0.8), rgba($gray, 1)), url("/assets/Speedline-Building.png");
   background-size: cover;
   border-radius: 10px;
   transition: transform 0.5s ease-in-out;
@@ -136,7 +139,7 @@ $green: hsl(153, 53%, 40%);
   }
 }
 .card .bar:before {
-  font-family: "Oxygen", sans-serif;
+  font-family: 'Courier New', Courier, monospace;
   display: block;
   content: "";
   height: 15px;
@@ -185,7 +188,7 @@ $green: hsl(153, 53%, 40%);
   content: "Apr";
 }
 .card .bar span {
-  font-family: "Oxygen", sans-serif;
+  font-family: 'Courier New', Courier, monospace;
   position: absolute;
   transform: rotateZ(-90deg);
   border-radius: 2px;
@@ -210,7 +213,7 @@ $green: hsl(153, 53%, 40%);
 
 .details .card {
   transform: rotateX(60deg) translateY(150px);
-  box-shadow: 0px 30px 40px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 30px 50px 20px rgba(0, 0, 0, 0.75);
 }
 .details .card .chart {
   transform: translateZ(40px) translatey(50px);
@@ -227,42 +230,42 @@ $green: hsl(153, 53%, 40%);
 // This is where I would dynamically update the bars via an API or some stream of actual data
 .details .card .bar.bar1 {
   height: 20px;
-  transition-delay: 0.3s;
+  transition-delay: 0s;
   margin-top: -20px;
 }
 .details .card .bar.bar2 {
-  height: 75px;
-  transition-delay: 0.2s;
-  margin-top: -75px;
+  height: 50px;
+  transition-delay: 0.1s;
+  margin-top: -50px;
 }
 .details .card .bar.bar3 {
-  height: 112.5px;
-  transition-delay: 0.1s;
-  margin-top: -112.5px;
+  height: 100px;
+  transition-delay: 0.2s;
+  margin-top: -100px;
 }
 .details .card .bar.bar4 {
-  height: 180px;
-  transition-delay: 0s;
-  margin-top: -180px;
+  height: 130px;
+  transition-delay: 0.3s;
+  margin-top: -130px;
 }
 .details .card .bar.bar5 {
-  height: 52.5px;
-  transition-delay: 0.1s;
-  margin-top: -52.5px;
+  height: 150px;
+  transition-delay: 0.4s;
+  margin-top: -150px;
 }
 .details .card .bar.bar6 {
-  height: 52.5px;
-  transition-delay: 0.2s;
-  margin-top: -52.5px;
+  height: 180px;
+  transition-delay: 0.5s;
+  margin-top: -180px;
 }
 .details .card .bar.bar7 {
-  height: 75px;
-  transition-delay: 0.3s;
-  margin-top: -75px;
+  height: 210px;
+  transition-delay: 0.6s;
+  margin-top: -210px;
 }
 .details .card .bar span {
   opacity: 1;
-  transition-delay: 0.3s;
+  transition-delay: 0.6s;
 }
 .details .card .bar:before {
   color: black;

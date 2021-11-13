@@ -8,7 +8,17 @@ let toggleTilt = function () {
     else
         body.classList.remove('details');
 };
-body.addEventListener('click', toggleTilt);
-body.addEventListener('touchstart', toggleTilt);
+//body.addEventListener('click', toggleTilt);
+//body.addEventListener('touchstart', toggleTilt);
 if (location.pathname.match(/fullcpgrid/i))
     setTimeout(toggleTilt, 1000);
+
+window.onscroll = function() {myFunction()};
+
+function myFunction() {
+    if (document.documentElement.scrollTop >= 900) {
+        body.classList.add('details');
+    }else{
+        body.classList.remove('details');
+    }
+}
