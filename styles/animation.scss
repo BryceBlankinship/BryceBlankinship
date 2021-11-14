@@ -227,7 +227,7 @@ $green: hsl(153, 53%, 40%);
   }
 }
 
-// This is where I would dynamically update the bars via an API or some stream of actual data
+// Need a way to get text from HTML and size the bars automatically
 .details .card .bar.bar1 {
   height: 20px;
   transition-delay: 0s;
