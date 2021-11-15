@@ -37,13 +37,3 @@ speedlineLink.addEventListener("mouseleave", function(event) {
     event.target.style.marginLeft = "5px";
     event.target.style.marginTop = "-5px";
 });
-
-function getScrollPercent() {
-    var h = document.documentElement, 
-        b = document.body,
-        st = 'scrollTop',
-        sh = 'scrollHeight';
-    console.log((h[st]||b[st]) / ((h[sh]||b[sh]) - h.clientHeight) * 100);
-}
-
-getScrollPercent();
