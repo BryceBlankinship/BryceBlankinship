@@ -16,7 +16,8 @@ if (location.pathname.match(/fullcpgrid/i))
 window.onscroll = function() {unlockCard()};
 
 function unlockCard() {
-    if (document.documentElement.scrollTop >= 870) {
+    // pixel value on 1920x1080 was 870
+    if (document.documentElement.scrollTop >= (window.innerHeight*.7)) {
         body.classList.add('details');
     }else{
         body.classList.remove('details');
@@ -36,3 +37,13 @@ speedlineLink.addEventListener("mouseleave", function(event) {
     event.target.style.marginLeft = "5px";
     event.target.style.marginTop = "-5px";
 });
+
+function getScrollPercent() {
+    var h = document.documentElement, 
+        b = document.body,
+        st = 'scrollTop',
+        sh = 'scrollHeight';
+    console.log((h[st]||b[st]) / ((h[sh]||b[sh]) - h.clientHeight) * 100);
+}
+
+getScrollPercent();
