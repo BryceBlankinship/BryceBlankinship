@@ -87,4 +87,22 @@ kbd {
   padding: 2px 10px;
   white-space: nowrap;
 }
+
+.footer-left {
+  color: white;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 120%;
+  position: fixed;
+  bottom: 5px;
+  left: 10px;
+}
+
+.footer-right {
+  color: white;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 120%;
+  position: fixed;
+  bottom: 5px;
+  right: 10px;
+}
 /*# sourceMappingURL=styles.css.map */
