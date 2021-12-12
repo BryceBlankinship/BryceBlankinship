@@ -4,7 +4,8 @@ If you're reading this you probably want to know something about me...
 
 <meta http-equiv = "refresh" content = "0; url=https://www.bryceblankinship.com/welcome.html"/>
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
-Click <a href="https://www.bryceblankinship.com/welcome.html">here</a> to go to my portfolio.
+Click <a href="https://www.bryceblankinship.com/welcome.html">here</a> to go to my portfolio website.
+
 
 Programming Language Experience:
 
