@@ -7,17 +7,17 @@ If you're reading this you probably want to know something about me...
 Click <a href="https://www.bryceblankinship.com/welcome.html">here</a> to go to my portfolio website.
 <br><br>
 Programming Language Experience:
+<br>
+  Proficient:
+    - Frontend Web Design (HTML, CSS, templating via Go)
+    - Python
 
-Proficient:
-  - Frontend Web Design (HTML, CSS, templating via Go)
-  - Python
+  Knowledgable:
+    - Java
+    - C
+    - Go
 
-Knowledgable:
-  - Java
-  - C
-  - Go
-
-Learning:
-  - C, C++
-  - Backend Web/Database Design (Go)
-  - Discrete Math/Algorithms for real scientific computing
+  Learning:
+    - C, C++
+    - Backend Web/Database Design (Go)
+    - Discrete Math/Algorithms for real scientific computing
