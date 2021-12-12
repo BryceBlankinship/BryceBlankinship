@@ -7,7 +7,7 @@ If you're reading this you probably want to know something about me...
 Click <a href="https://www.bryceblankinship.com/welcome.html">here</a> to go to my portfolio website.
 <br><br>
 Programming Language Experience:
-<br>
+
   Proficient:
     - Frontend Web Design (HTML, CSS, templating via Go)
     - Python
