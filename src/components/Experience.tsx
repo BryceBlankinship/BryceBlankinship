@@ -21,7 +21,7 @@ const jobs = [
                 <br></br>
                 <ul className="text-sm text-muted-foreground flex flex-col gap-1 mt-2 ml-2">
                     <li>
-                        Adapted quickly to changing product requirements & features
+                        • Adapted quickly to changing product requirements & features
                     </li>
                     <li>
                         • Worked with stakeholders directly as the sole Software Engineer
