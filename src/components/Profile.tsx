@@ -16,20 +16,14 @@ import ThemeSwitcher from "@/components/ui/ThemeSwitcher";
 const socials = [
     {
         name: "Github",
-        link: "https://github.com/achris-alonzo30",
+        link: "https://github.com/BryceBlankinship",
         icon: <FaGithub className="size-4" />
     },
     {
         name: "LinkedIn",
-        link: "https://linkedin.com/in/lonzochris",
+        link: "https://linkedin.com/in/bryceblankinship",
         icon: <FaLinkedin className="size-4" />
     },
-    {
-        name: "X (Twitter)",
-        link: "https://x.com/lonz_chris",
-        icon: <FaXTwitter className="size-4" />
-    }
-    // TODO: Add more socials here
 ]
 
 export const Profile = () => {
@@ -50,9 +44,9 @@ export const Profile = () => {
                                 className="rounded-full size-12 md:w-full h-auto object-cover border-2"
                             />
                             <div className="flex flex-col items-start justify-center">
-                                <h1 className="font-bold md:mt-4 text-xl md:text-2xl">Chris Lonzo</h1>
+                                <h1 className="font-bold md:mt-4 text-xl md:text-2xl">Bryce Blankinship</h1>
                                 <p className="text-sm md:text-base text-muted-foreground">
-                                    Solopreneur Developer
+                                    Software Engineer
                                 </p>
                             </div>
                         </div>
@@ -60,17 +54,17 @@ export const Profile = () => {
                     </div>
 
                     <p className="mt-2 text-start text-sm text-muted-foreground">
-                        I am a software engineer with a passion for building products that help people live better lives.
+                        I am a full-stack software engineer with a passion for building user applications.
                     </p>
                     <Button className="mt-4 w-full" asChild>
                         {/* TODO: Add resume */}
                         {/* TODO: Add link to schedule a call with you using Calendly or Cal */}
                         <Link
-                            href="/resume.pdf"
+                            href="mailto:blankinship2002@gmail.com"
                             target="_blank"
                             className="font-semibold uppercase"
                         >
-                            CONTACT ME
+                            Contact Me
                         </Link>
                     </Button>
                     <div className="mt-4 flex flex-col space-y-2 border-t border-border pt-4 w-full">
