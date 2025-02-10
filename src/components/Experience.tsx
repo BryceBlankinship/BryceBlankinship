@@ -115,7 +115,7 @@ export const Experience = () => {
                 <CardContent className="pt-6">
                     <ul className="space-y-8">
                         {jobs.map((j, i) => (
-                            <li key={i} className="border-b last:border-b-0 pb-8 last:pb-0">
+                            <li key={i} className="border-b last:border-b-0 last:pb-0">
                                 {/* Job Details */}
                                 <div className="flex items-center space-x-4">
                                     <Image
