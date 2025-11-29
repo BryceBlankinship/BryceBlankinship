@@ -61,24 +61,6 @@ export default function Loading() {
                 <Skeleton className="h-20 w-full" />
               </CardContent>
             </Card>
-            {/* Featured Projects Skeleton */}
-            <Skeleton className="h-8 w-[180px] mb-4" />
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-              {Array(4)
-                .fill(0)
-                .map((_, index) => (
-                  <Card key={index}>
-                    <CardContent className="pt-6">
-                      <Skeleton className="h-6 w-[150px] mb-2" />
-                      <Skeleton className="h-4 w-full mb-4" />
-                      <div className="flex items-center justify-between">
-                        <Skeleton className="h-4 w-[100px]" />
-                        <Skeleton className="h-4 w-[80px]" />
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-            </div>
             {/* Work Experience Skeleton */}
             <Skeleton className="h-8 w-[180px] mb-4" />
             <Card>

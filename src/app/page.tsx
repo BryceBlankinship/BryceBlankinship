@@ -1,6 +1,5 @@
 import { Profile } from "@/components/Profile";
 import { AboutMe } from "@/components/AboutMe";
-import { Projects } from "@/components/Projects";
 import { Experience } from "@/components/Experience";
 import { Education } from "@/components/Education";
 import { Skills } from "@/components/Skills";
@@ -16,7 +15,6 @@ export default function Home() {
           <div className="order-3"><Experience /></div>
           <div className="order-4"><Skills /></div>
           <div className="order-5"><Education /></div>
-          <div className="order-6"><Projects /></div>
         </div>
         
         {/* Desktop: Two column layout */}
@@ -32,7 +30,6 @@ export default function Home() {
             <AboutMe />
             <Experience />
             <Education />
-            <Projects />
           </main>
         </div>
       </div>
