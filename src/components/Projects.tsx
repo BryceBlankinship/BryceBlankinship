@@ -6,12 +6,7 @@ import { ExternalLink } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
 export const projects = [
-    {
-        title: "E-commerce Platform",
-        description: "An enterprise e-commerce solution with React.js, Spring Boot, and PostgreSQL",
-        tech: "React",
-        link: "https://mellowdepot.com",
-    },
+
 ]
 
 const techColors = {
@@ -24,9 +19,9 @@ const techColors = {
 export const Projects = () => {
     return (
         <>
-            <h2 className="text-xl font-bold mb-4">
+            {projects.length > 0 && <h2 className="text-xl font-bold mb-4">
                 Featured Projects
-            </h2>
+            </h2>}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                 {projects.map((p, i) => (
                     <Card key={i}>

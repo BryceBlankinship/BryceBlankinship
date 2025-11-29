@@ -2,24 +2,21 @@ import Image from "next/image";
 
 import { CalendarDays, ExternalLink } from "lucide-react";
 
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 import { JobImages } from "@/components/JobImages";
 import Link from "next/link";
 
 const jobs = [
     {
-        role: "Software Engineer / Techincal Advisor",
+        role: "Software Engineer & Technical Advisor",
         company: "PatentFlip", // TODO: Replace with actual company name
         logo: "/patentfliplogo.png", // TODO: Replace with actual logo
         duration: "2024 - Present",
         description:
-            <div>Developed PatentFlip, a marketplace for buying and selling patents.
-                <br></br>
-                <br></br>
-                Notable Responsibilities:
-                <br></br>
-                <ul className="text-sm text-muted-foreground flex flex-col gap-1 mt-2 ml-2">
+            <div>
+                <p className="mb-2">Developed PatentFlip, a marketplace for buying and selling patents.</p>
+                <ul className="text-sm text-muted-foreground flex flex-col gap-1 ml-2">
                     <li>
                         • Adapted quickly to changing product requirements & features
                     </li>
@@ -38,17 +35,14 @@ const jobs = [
         images: [],
     },
     {
-        role: "Software Engineer / Technical Advisor",
+        role: "Software Engineer & Technical Advisor",
         company: "Lookio", // TODO: Replace with actual company name
         logo: "/lookiologo.png", // TODO: Replace with actual logo
         duration: "2023 - Present",
         description:
-            <div>Developed Lookio, a social media auditor that creates insights for employers.
-                <br></br>
-                <br></br>
-                Notable Responsibilities:
-                <br></br>
-                <ul className="text-sm text-muted-foreground flex flex-col gap-1 mt-2 ml-2">
+            <div>
+                <p className="mb-2">Developed Lookio, a social media auditor that creates insights for employers.</p>
+                <ul className="text-sm text-muted-foreground flex flex-col gap-1 ml-2">
                     <li>
                         • Developed robust web scrapers that run on a distributed residential proxy network
                     </li>
@@ -75,12 +69,9 @@ const jobs = [
         logo: "/homedepotlogo.jpeg", // TODO: Replace with actual logo
         duration: "2022 - Present",
         description:
-            <div>Working across multiple teams within the Pricing organization. I add value by rapidly developing and deploying my assigned work, and collaborating with Staff/Principal Engineers to improve the Developer Experience in many repositories impacting over 20 applications.
-                <br></br>
-                <br></br>
-                Notable Responsibilities:
-                <br></br>
-                <ul className="text-sm text-muted-foreground flex flex-col gap-1 mt-2 ml-2">
+            <div>
+                <p className="mb-2">Working across multiple teams within the Pricing organization.</p>
+                <ul className="text-sm text-muted-foreground flex flex-col gap-1 ml-2">
                     <li>
                         • Managed deployments for the PaCMan team
                     </li>
@@ -101,7 +92,10 @@ const jobs = [
         logo: "/homedepotlogo.jpeg", // TODO: Replace with actual logo
         duration: "2020 - 2022",
         description:
-            "Worked in various departments day-to-day as I was needed. My ability to learn quickly and flexible schedule allowed me to work almost anywhere in the store. I really enjoyed walking the floor and helping customers when there wasn't assigned work.",
+            <div>
+                <p className="mb-2">Worked in various departments day-to-day as needed.</p>
+                <p className="text-muted-foreground">My ability to learn quickly and flexible schedule allowed me to work almost anywhere in the store. I really enjoyed walking the floor and helping customers when there wasn't assigned work.</p>
+            </div>,
         link: "",
         images: [],
     },
@@ -109,42 +103,47 @@ const jobs = [
 
 export const Experience = () => {
     return (
-        <>
-            <h2 className="text-xl font-bold mb-4 text-black dark:text-white">Work Experience</h2>
-            <Card>
-                <CardContent className="pt-6">
-                    <ul className="space-y-8">
+        <Card id="experience" className="scroll-mt-20 md:scroll-mt-24">
+            <CardHeader className="flex flex-row justify-between items-baseline p-4 md:p-6 pb-3 md:pb-0">
+                <CardTitle className="text-xl md:text-2xl">Work Experience</CardTitle>
+            </CardHeader>
+            <CardContent className="p-4 md:p-6 pt-0">
+                    <ul className="space-y-6 md:space-y-8">
                         {jobs.map((j, i) => (
-                            <li key={i} className="border-b last:border-b-0 last:pb-0">
+                            <li key={i} className="border-b last:border-b-0 pb-6 md:pb-8 last:pb-0">
                                 {/* Job Details */}
-                                <div className="flex items-center space-x-4">
+                                <div className="flex items-start space-x-3 md:space-x-4">
                                     <Image
                                         src={j.logo}
                                         alt={j.company}
                                         width={40}
                                         height={40}
-                                        className="rounded-md border shadow-md object-cover"
+                                        className="rounded-md border shadow-md object-cover flex-shrink-0"
                                     />
-                                    <div>
-                                        <h3 className="font-semibold">
-                                            {j.role}
-                                        </h3>
-                                        <p className="text-sm text-muted-foreground">
-                                            <span className="flex flex-row align-center gap-4">
-                                                {j.company}
-                                                {j.link && <Link href={j.link} target="_blank" className="flex items-center gap-2 text-sm text-primary hover:underline"                                                >
-                                                    View Product
-                                                    <ExternalLink className="inline-block size-3" />
-                                                </Link>}
-                                            </span>
-                                        </p>
+                                    <div className="flex-1 min-w-0">
+                                        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 sm:gap-4">
+                                            <div className="flex-1 min-w-0">
+                                                <h3 className="font-semibold text-base md:text-lg">
+                                                    {j.role}
+                                                </h3>
+                                                <p className="text-sm text-muted-foreground mt-1">
+                                                    <span className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+                                                        <span>{j.company}</span>
+                                                        {j.link && <Link href={j.link} target="_blank" className="flex items-center gap-1.5 text-sm text-primary hover:underline w-fit"                                                >
+                                                            View Product
+                                                            <ExternalLink className="inline-block size-3" />
+                                                        </Link>}
+                                                    </span>
+                                                </p>
+                                            </div>
+                                            <p className="text-xs text-muted-foreground flex items-center sm:flex-shrink-0 sm:mt-0.5">
+                                                <CalendarDays className="size-3 mr-1.5 flex-shrink-0" />
+                                                <span className="whitespace-nowrap">{j.duration}</span>
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
-                                <p className="text-xs text-muted-foreground mt-2 flex items-center">
-                                    <CalendarDays className="size-3 mr-2" />
-                                    {j.duration}
-                                </p>
-                                <div className="text-sm mt-2">{j.description}</div>
+                                <div className="text-sm leading-relaxed mt-3 md:mt-2">{j.description}</div>
                                 {/* Job Images */}
                                 <JobImages
                                     role={j.role}
@@ -157,6 +156,5 @@ export const Experience = () => {
                     </ul>
                 </CardContent>
             </Card>
-        </>
     )
 }

@@ -38,32 +38,6 @@ html {
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
   }
-  .dark {
-    --background: 0 0% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 0 0% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 0 0% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 9%;
-    --secondary: 0 0% 14.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 14.9%;
-    --muted-foreground: 0 0% 63.9%;
-    --accent: 0 0% 14.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 14.9%;
-    --input: 0 0% 14.9%;
-    --ring: 0 0% 83.1%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
-  }
 }
 
 @layer base {
@@ -72,5 +46,305 @@ html {
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+/* Classic Apple Design Philosophy - Clean, Professional, Academic */
+@layer components {
+  .apple-classic-header {
+    @apply bg-white;
+    @apply border-b border-gray-200;
+    @apply text-gray-900;
+  }
+
+  .apple-classic-card {
+    @apply bg-white;
+    @apply border border-gray-200;
+    @apply rounded-lg shadow-sm;
+    @apply hover:shadow-md transition-shadow duration-200;
+  }
+
+  .apple-classic-title {
+    @apply font-normal text-gray-900;
+    font-family: 'Georgia', 'Times', serif;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+
+  .apple-classic-subtitle {
+    @apply font-normal text-gray-700;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', sans-serif;
+    font-weight: 300;
+    letter-spacing: 0.01em;
+  }
+
+  .apple-classic-text {
+    @apply text-gray-800;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', sans-serif;
+    line-height: 1.6;
+    font-weight: 400;
+  }
+
+  .apple-classic-button {
+    @apply bg-white;
+    @apply hover:bg-gray-50;
+    @apply border border-gray-300;
+    @apply text-gray-900;
+    @apply font-normal;
+    @apply rounded-lg shadow-sm;
+    @apply transition-all duration-150;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', sans-serif;
+    font-weight: 400;
+  }
+
+  .apple-classic-button:hover {
+    @apply shadow-md;
+  }
+
+  .apple-classic-nav {
+    @apply bg-gray-50;
+    @apply text-gray-900;
+    @apply border-b border-gray-200;
+  }
+
+  .apple-classic-badge {
+    @apply bg-gray-100;
+    @apply text-gray-700;
+    @apply border border-gray-200;
+    @apply px-2 py-1 rounded-md text-xs;
+    @apply font-normal;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', sans-serif;
+    font-weight: 400;
+  }
+
+  .apple-classic-link {
+    @apply text-gray-900;
+    @apply hover:text-gray-600;
+    @apply underline decoration-gray-400 hover:decoration-gray-600;
+    @apply transition-colors duration-150;
+  }
+
+  /* Blog content styling with academic feel */
+  .blog-content {
+    @apply prose prose-lg max-w-none;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', sans-serif;
+  }
+
+  .blog-content h1 {
+    @apply apple-classic-title text-4xl mb-8 mt-0;
+    font-weight: 500;
+  }
+
+  .blog-content h2 {
+    @apply apple-classic-title text-2xl mb-6 mt-12;
+    font-weight: 500;
+  }
+
+  .blog-content h3 {
+    @apply apple-classic-title text-xl mb-4 mt-8;
+    font-weight: 500;
+  }
+
+  .blog-content h4 {
+    @apply apple-classic-title text-lg mb-3 mt-6;
+    font-weight: 500;
+  }
+
+  .blog-content p {
+    @apply apple-classic-text mb-6;
+    font-size: 1.125rem;
+    line-height: 1.7;
+  }
+
+  .blog-content a {
+    @apply apple-classic-link;
+  }
+
+  .blog-content code {
+    @apply bg-gray-100 text-gray-900;
+    @apply px-1.5 py-0.5 rounded-md;
+    font-family: 'SF Mono', 'Monaco', 'Menlo', 'Consolas', 'Courier New', monospace;
+    font-size: 0.9em;
+  }
+
+  .blog-content pre {
+    @apply bg-gray-50 border border-gray-200;
+    @apply p-6 rounded-lg overflow-x-auto;
+    font-family: 'SF Mono', 'Monaco', 'Menlo', 'Consolas', 'Courier New', monospace;
+  }
+
+  .blog-content pre code {
+    @apply bg-transparent p-0;
+  }
+
+  .blog-content blockquote {
+    @apply border-l-4 border-gray-300 pl-6 italic;
+    @apply bg-transparent py-0 my-8;
+    font-style: italic;
+  }
+
+  .blog-content ul, .blog-content ol {
+    @apply apple-classic-text;
+    @apply pl-6;
+  }
+
+  .blog-content li {
+    @apply mb-2;
+  }
+
+  .blog-content strong {
+    font-weight: 600;
+  }
+
+  .blog-content em {
+    font-style: italic;
+  }
+
+  /* Reading experience enhancements */
+  .blog-content img {
+    @apply rounded-lg shadow-sm my-8;
+  }
+
+  .blog-content hr {
+    @apply border-gray-200 my-12;
+  }
+
+  .blog-content table {
+    @apply border-collapse border border-gray-200 my-8 rounded-lg;
+  }
+
+  .blog-content th,
+  .blog-content td {
+    @apply border border-gray-200 px-4 py-2;
+  }
+
+  .blog-content th {
+    @apply bg-gray-50 font-medium;
+  }
+
+  /* Clean metadata styling */
+  .article-meta {
+    @apply text-sm text-gray-600;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', sans-serif;
+    font-weight: 400;
+  }
+
+  /* Elegant spacing for blog layout */
+  .blog-layout {
+    @apply max-w-4xl mx-auto;
+  }
+
+  .blog-header {
+    @apply mb-12;
+  }
+
+  .blog-article {
+    @apply mb-16;
+  }
+
+  /* Modern Apple Liquid UI Navbar */
+  .apple-liquid-nav {
+    @apply relative;
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 28px;
+    box-shadow: 
+      0 8px 32px 0 rgba(0, 0, 0, 0.12),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.6),
+      0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .apple-liquid-nav::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 28px;
+    padding: 1px;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.5) 0%,
+      rgba(255, 255, 255, 0.15) 50%,
+      rgba(255, 255, 255, 0.3) 100%
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  /* Mobile: bottom positioning with no rounded corners */
+  @media (max-width: 768px) {
+    .apple-liquid-nav {
+      border-radius: 0;
+      border-bottom: none;
+      box-shadow: 
+        0 -8px 32px 0 rgba(0, 0, 0, 0.12),
+        inset 0 -1px 0 0 rgba(255, 255, 255, 0.6),
+        0 -1px 2px 0 rgba(0, 0, 0, 0.05);
+    }
+
+    .apple-liquid-nav::before {
+      border-radius: 0;
+    }
+  }
+
+  .apple-liquid-nav-active {
+    @apply text-gray-900;
+    background: rgba(255, 255, 255, 0.85);
+    box-shadow: 
+      0 4px 20px 0 rgba(0, 0, 0, 0.12),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.8),
+      0 1px 3px 0 rgba(0, 0, 0, 0.08);
+    transform: translateY(-1px);
+  }
+
+  .apple-liquid-nav-inactive {
+    @apply text-gray-700;
+    background: transparent;
+  }
+
+  .apple-liquid-nav-inactive:hover {
+    @apply text-gray-900;
+    background: rgba(255, 255, 255, 0.5);
+    transform: translateY(-1px);
+  }
+
+  .apple-liquid-nav-button {
+    @apply bg-gray-900 text-white;
+    @apply hover:bg-gray-800;
+    @apply border-0;
+    @apply shadow-md;
+    @apply transition-all duration-300 ease-out;
+  }
+
+  .apple-liquid-nav-button:hover {
+    @apply shadow-lg;
+    transform: translateY(-1px);
+  }
+
+  .apple-liquid-dropdown {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 
+      0 8px 32px 0 rgba(0, 0, 0, 0.12),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.6);
+  }
+
+  .touch-manipulation {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .apple-liquid-nav {
+    font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', sans-serif;
   }
 }

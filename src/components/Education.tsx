@@ -2,7 +2,7 @@ import Image from "next/image";
 
 import { CalendarDays, ExternalLink } from "lucide-react";
 
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 import { JobImages } from "@/components/JobImages";
 import Link from "next/link";
@@ -13,25 +13,6 @@ const degrees = [
         school: "New Jersey Institute of Technology", // TODO: Replace with actual school name
         logo: "/njitlogo.png", // TODO: Replace with actual logo
         duration: "Spring '24 - Fall '26",
-        description:
-            <div>
-                Notable Courses & Experiences:
-                <br></br>
-                <ul className="text-sm text-muted-foreground flex flex-col gap-1 mt-2 ml-2">
-                    <li>
-                        • CS288; Intensive Programming in Linux with Dr. Itani
-                    </li>
-                    <li>
-                        • CS331; Database System Design and Management
-                    </li>
-                    <li>
-                        • CS490; Guided Design in Software Engineering
-                    </li>
-                    <li>
-                        • Member of Sigma Alpha Epsilon Fraternity
-                    </li>
-                </ul>
-            </div>,
         link: "https://computing.njit.edu/",
         images: [],
     },
@@ -40,15 +21,6 @@ const degrees = [
         school: "RVCC", // TODO: Replace with actual school name
         logo: "/rvcclogo.jpg", // TODO: Replace with actual logo
         duration: "Fall '21 - Fall '23",
-        description: <div>
-            Notable Courses & Experiences:
-            <br></br>
-            <ul className="text-sm text-muted-foreground flex flex-col gap-1 mt-2 ml-2">
-                <li>
-                    • CSIT256; Computer Architecture & Assembly Language with Dr. Brower
-                </li>
-            </ul>
-        </div>,
         link: "https://www.raritanval.edu/academic-programs/academic-departments/math-computer-science",
         images: [],
     },
@@ -56,42 +28,46 @@ const degrees = [
 
 export const Education = () => {
     return (
-        <>
-            <h2 className="text-xl font-bold mt-6 mb-4 text-black dark:text-white">Education</h2>
-            <Card>
-                <CardContent className="pt-6">
-                    <ul className="space-y-8">
+        <Card id="education" className="scroll-mt-20 md:scroll-mt-24">
+            <CardHeader className="flex flex-row justify-between items-baseline p-4 md:p-6 pb-3 md:pb-0">
+                <CardTitle className="text-xl md:text-2xl">Education</CardTitle>
+            </CardHeader>
+            <CardContent className="p-4 md:p-6 pt-0">
+                    <ul className="space-y-4 md:space-y-6">
                         {degrees.map((j, i) => (
-                            <li key={i} className="border-b last:border-b-0 last:pb-0">
+                            <li key={i} className="border-b last:border-b-0 pb-4 md:pb-6 last:pb-0">
                                 {/* Job Details */}
-                                <div className="flex items-center space-x-4">
+                                <div className="flex items-start space-x-3 md:space-x-4">
                                     <Image
                                         src={j.logo}
                                         alt={j.school}
                                         width={40}
                                         height={40}
-                                        className="rounded-md border shadow-md object-cover"
+                                        className="rounded-md border shadow-md object-cover flex-shrink-0"
                                     />
-                                    <div>
-                                        <h3 className="font-semibold">
-                                            {j.role}
-                                        </h3>
-                                        <p className="text-sm text-muted-foreground">
-                                            <span className="flex flex-row align-center gap-4">
-                                                {j.school}
-                                                {j.link && <Link href={j.link} target="_blank" className="flex items-center gap-2 text-sm text-primary hover:underline"                                                >
-                                                    View School
-                                                    <ExternalLink className="inline-block size-3" />
-                                                </Link>}
-                                            </span>
-                                        </p>
+                                    <div className="flex-1 min-w-0">
+                                        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 sm:gap-4">
+                                            <div className="flex-1 min-w-0">
+                                                <h3 className="font-semibold text-base md:text-lg">
+                                                    {j.role}
+                                                </h3>
+                                                <p className="text-sm text-muted-foreground mt-1">
+                                                    <span className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+                                                        <span>{j.school}</span>
+                                                        {j.link && <Link href={j.link} target="_blank" className="flex items-center gap-1.5 text-sm text-primary hover:underline w-fit"                                                >
+                                                            View School
+                                                            <ExternalLink className="inline-block size-3" />
+                                                        </Link>}
+                                                    </span>
+                                                </p>
+                                            </div>
+                                            <p className="text-xs text-muted-foreground flex items-center sm:flex-shrink-0 sm:mt-0.5">
+                                                <CalendarDays className="size-3 mr-1.5 flex-shrink-0" />
+                                                <span className="whitespace-nowrap">{j.duration}</span>
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
-                                <p className="text-xs text-muted-foreground mt-2 flex items-center">
-                                    <CalendarDays className="size-3 mr-2" />
-                                    {j.duration}
-                                </p>
-                                <div className="text-sm mt-2">{j.description}</div>
                                 {/* Job Images */}
                                 <JobImages
                                     role={j.role}
@@ -104,6 +80,5 @@ export const Education = () => {
                     </ul>
                 </CardContent>
             </Card>
-        </>
     )
 }
