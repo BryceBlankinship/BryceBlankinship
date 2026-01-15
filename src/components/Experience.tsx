@@ -9,7 +9,7 @@ import Link from "next/link";
 
 const jobs = [
     {
-        role: "Software Engineer & Technical Advisor",
+        role: "Technical Co-Founder",
         company: "PatentFlip", // TODO: Replace with actual company name
         logo: "/patentfliplogo.png", // TODO: Replace with actual logo
         duration: "2024 - Present",
