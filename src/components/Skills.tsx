@@ -13,7 +13,7 @@ export const Skills = () => {
         <section id="skills" className="scroll-mt-20 md:scroll-mt-24 flex flex-col gap-4">
             <Card className="mt-0">
                 <CardHeader className="p-4 md:p-6 pb-3 md:pb-6">
-                    <CardTitle className="text-xl md:text-2xl">Skills</CardTitle>
+                    <CardTitle className="text-xl md:text-2xl">Technical Skills</CardTitle>
                 </CardHeader>
                 <CardContent className="p-4 md:p-6 pt-0">
                     <div className="flex flex-wrap gap-2">
