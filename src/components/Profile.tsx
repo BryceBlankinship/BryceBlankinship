@@ -72,7 +72,7 @@ export const Profile = () => {
                     </div>
 
                     <p className="mt-1 md:mt-2 text-start text-sm text-muted-foreground">
-                        I am a full-stack software engineer with a passion for building user applications.
+                        I'm a software engineer who likes building things people use.
                     </p>
                     <div ref={wrapperRef} className="w-full mt-3 md:mt-4 relative z-10">
                         <DropdownMenu>
