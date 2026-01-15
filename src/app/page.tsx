@@ -3,6 +3,7 @@ import { AboutMe } from "@/components/AboutMe";
 import { Experience } from "@/components/Experience";
 import { Education } from "@/components/Education";
 import { Skills } from "@/components/Skills";
+import { Websites } from "@/components/Websites";
 
 export default function Home() {
   return (
@@ -29,6 +30,7 @@ export default function Home() {
           <main className="col-span-2 flex flex-col gap-6">
             <AboutMe />
             <Experience />
+            <Websites />
             <Education />
           </main>
         </div>

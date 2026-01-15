@@ -43,7 +43,7 @@ export const Education = () => {
                                         alt={j.school}
                                         width={40}
                                         height={40}
-                                        className="rounded-md border shadow-md object-cover flex-shrink-0"
+                                        className="rounded-md object-cover flex-shrink-0"
                                     />
                                     <div className="flex-1 min-w-0">
                                         <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 sm:gap-4">
