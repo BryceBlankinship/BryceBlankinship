@@ -59,8 +59,9 @@ export const Profile = () => {
                                 height={150}
                                 quality={100}
                                 src="/avatar.jpg"
-                                alt="Profile Picture"
+                                alt="Bryce Blankinship - Full-Stack Software Engineer profile photo"
                                 className="rounded-full size-16 md:w-full md:h-auto object-cover border-2 flex-shrink-0"
+                                priority
                             />
                             <div className="flex flex-col items-start justify-center">
                                 <h1 className="font-bold text-lg md:text-2xl">Bryce Blankinship</h1>
@@ -125,6 +126,8 @@ export const Profile = () => {
                                     key={i}
                                     href={s.link}
                                     target="_blank"
+                                    rel="noopener noreferrer"
+                                    aria-label={`Visit Bryce Blankinship's ${s.name} profile`}
                                     className="cursor-pointer flex items-center gap-2 group"
                                 >
                                     {s.icon}

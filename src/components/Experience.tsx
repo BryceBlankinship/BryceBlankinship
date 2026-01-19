@@ -141,7 +141,7 @@ export const Experience = () => {
                             <div className="flex items-start space-x-3 md:space-x-4">
                                 <Image
                                     src={j.logo}
-                                    alt={j.company}
+                                    alt={`${j.company} company logo`}
                                     width={40}
                                     height={40}
                                     className="rounded-md object-cover flex-shrink-0"
@@ -155,7 +155,7 @@ export const Experience = () => {
                                             <p className="text-sm text-muted-foreground mt-1">
                                                 <span className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
                                                     <span>{j.company}</span>
-                                                    {j.link && <Link href={j.link} target="_blank" className="flex items-center gap-1.5 text-sm text-primary hover:underline w-fit"                                                >
+                                                    {j.link && <Link href={j.link} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-sm text-primary hover:underline w-fit"                                                >
                                                         View Product
                                                         <ExternalLink className="inline-block size-3" />
                                                     </Link>}
