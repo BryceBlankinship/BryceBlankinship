@@ -9,6 +9,32 @@ import Link from "next/link";
 
 const jobs = [
     {
+        role: "H.E. Chimney",
+        company: "Bethlehem, PA",
+        logo: "/he-chimney.png",
+        duration: "2026",
+        description:
+            <div>
+                <p className="mb-2">Website for a chimney service in the Lehigh Valley.</p>
+                <p className="text-muted-foreground">Phil Milne runs H.E. Chimney out of Bethlehem, sweeping, relining, inspecting, and repairing chimneys around Easton and the rest of the valley. The site introduces Phil and Sam, lays out the work, and lets homeowners request a visit.</p>
+            </div>,
+        link: "https://hechimney.com/",
+        images: [],
+    },
+    {
+        role: "Firefly Lawn & Land",
+        company: "Bucks County, PA",
+        logo: "/firefly.svg",
+        duration: "2026",
+        description:
+            <div>
+                <p className="mb-2">Marketing site and estimating tool for a lawn and land care company.</p>
+                <p className="text-muted-foreground">Matt Zdepski runs Firefly in and around Bucks County. Homeowners can walk through an estimate for their property, and the shop has an internal estimator that prices the job and drafts a Stripe invoice.</p>
+            </div>,
+        link: "https://fireflylawnandland.com/",
+        images: [],
+    },
+    {
         role: "Global Driving School NJ",
         company: "Woodland Park, NJ", // TODO: Replace with actual company name
         logo: "/gds.svg", // TODO: Replace with actual logo
@@ -51,7 +77,7 @@ const jobs = [
 
 export const Websites = () => {
     return (
-        <Card id="experience" className="scroll-mt-20 md:scroll-mt-24">
+        <Card id="projects" className="scroll-mt-20 md:scroll-mt-24">
             <CardHeader className="flex flex-col justify-between items-baseline p-4 md:p-6 pb-3 md:pb-0">
                 <CardTitle className="text-xl md:text-2xl">Freelanced Websites</CardTitle>
                 <CardDescription className="text-sm text-muted-foreground">I've built several websites for small businesses. All my clients come from referrals.</CardDescription>

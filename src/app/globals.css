@@ -125,35 +125,45 @@ html {
     @apply transition-colors duration-150;
   }
 
-  /* Modern Apple Liquid UI Navbar */
+  /* Liquid Glass navbar (modeled on the iOS 26 tab bar) */
   .apple-liquid-nav {
     @apply relative;
-    background: rgba(255, 255, 255, 0.72);
-    backdrop-filter: blur(24px) saturate(180%);
-    -webkit-backdrop-filter: blur(24px) saturate(180%);
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    border-radius: 28px;
-    box-shadow: 
-      0 8px 32px 0 rgba(0, 0, 0, 0.12),
-      inset 0 1px 0 0 rgba(255, 255, 255, 0.6),
-      0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 9999px;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.5) 0%,
+      rgba(255, 255, 255, 0.28) 100%
+    );
+    -webkit-backdrop-filter: blur(10px) saturate(190%) brightness(1.04);
+    backdrop-filter: blur(10px) saturate(190%) brightness(1.04);
+    box-shadow:
+      inset 0 1px 0.5px 0 rgba(255, 255, 255, 0.95),
+      inset 0 -1px 0.5px 0 rgba(255, 255, 255, 0.55),
+      inset 0 0 16px 0 rgba(255, 255, 255, 0.5),
+      0 0 0 0.5px rgba(0, 0, 0, 0.07),
+      0 12px 32px -8px rgba(0, 0, 0, 0.16),
+      0 2px 6px 0 rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
+  .apple-liquid-nav[data-refract] {
+    backdrop-filter: blur(6px) url(#navbar-glass-refraction) saturate(190%) brightness(1.04);
+  }
+
+  /* Specular rim: bright where light hits the top-left and bottom-right bevel */
   .apple-liquid-nav::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border-radius: 28px;
+    inset: 0;
+    border-radius: inherit;
     padding: 1px;
     background: linear-gradient(
       135deg,
-      rgba(255, 255, 255, 0.5) 0%,
-      rgba(255, 255, 255, 0.15) 50%,
-      rgba(255, 255, 255, 0.3) 100%
+      rgba(255, 255, 255, 1) 0%,
+      rgba(255, 255, 255, 0.25) 30%,
+      rgba(255, 255, 255, 0.05) 55%,
+      rgba(255, 255, 255, 0.35) 80%,
+      rgba(255, 255, 255, 0.9) 100%
     );
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
@@ -161,41 +171,207 @@ html {
     pointer-events: none;
   }
 
-  /* Mobile: bottom positioning with no rounded corners */
-  @media (max-width: 768px) {
-    .apple-liquid-nav {
-      border-radius: 0;
-      border-bottom: none;
-      box-shadow: 
-        0 -8px 32px 0 rgba(0, 0, 0, 0.12),
-        inset 0 -1px 0 0 rgba(255, 255, 255, 0.6),
-        0 -1px 2px 0 rgba(0, 0, 0, 0.05);
-    }
+  /* Soft top sheen that sits behind the nav content */
+  .apple-liquid-nav::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    background: radial-gradient(
+      120% 90% at 50% -30%,
+      rgba(255, 255, 255, 0.55) 0%,
+      rgba(255, 255, 255, 0) 60%
+    );
+    pointer-events: none;
+  }
 
-    .apple-liquid-nav::before {
-      border-radius: 0;
+  @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .apple-liquid-nav {
+      background: rgba(255, 255, 255, 0.92);
     }
   }
 
-  .apple-liquid-nav-active {
-    @apply text-gray-900;
-    background: rgba(255, 255, 255, 0.85);
-    box-shadow: 
-      0 4px 20px 0 rgba(0, 0, 0, 0.12),
-      inset 0 1px 0 0 rgba(255, 255, 255, 0.8),
-      0 1px 3px 0 rgba(0, 0, 0, 0.08);
-    transform: translateY(-1px);
+  @media (prefers-reduced-transparency: reduce) {
+    .apple-liquid-nav {
+      background: rgba(255, 255, 255, 0.92);
+    }
+  }
+
+  .apple-liquid-nav-indicator {
+    will-change: transform, width;
+  }
+
+  /* Selected tab: an opaque white capsule raised above the glass, as in iOS tab bars */
+  .apple-liquid-nav-indicator-surface {
+    position: absolute;
+    inset: 0;
+    border-radius: 9999px;
+    background: linear-gradient(180deg, #ffffff 0%, #f7f7f8 100%);
+    box-shadow:
+      inset 0 1px 0 0 rgba(255, 255, 255, 1),
+      inset 0 -1px 1px 0 rgba(0, 0, 0, 0.04),
+      0 0 0 0.5px rgba(0, 0, 0, 0.08),
+      0 1px 2px 0 rgba(0, 0, 0, 0.06),
+      0 4px 12px -2px rgba(0, 0, 0, 0.14);
+    transition:
+      background 0.12s ease-out,
+      box-shadow 0.12s ease-out;
+  }
+
+  /* While travelling it swells into a clear lens, then settles with the slide */
+  .apple-liquid-nav-indicator[data-popped] .apple-liquid-nav-indicator-surface {
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.45) 0%,
+      rgba(255, 255, 255, 0.2) 100%
+    );
+    -webkit-backdrop-filter: blur(1.5px) saturate(180%) brightness(1.06);
+    backdrop-filter: blur(1.5px) saturate(180%) brightness(1.06);
+    box-shadow:
+      inset 0 1.5px 1px 0 rgba(255, 255, 255, 1),
+      inset 0 -1.5px 1px 0 rgba(255, 255, 255, 0.7),
+      inset 0 0 10px 0 rgba(255, 255, 255, 0.6),
+      0 0 0 0.5px rgba(0, 0, 0, 0.1),
+      0 10px 24px -6px rgba(0, 0, 0, 0.22);
+    animation: nav-pill-pop 320ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    transition:
+      background 0.08s ease-out,
+      box-shadow 0.08s ease-out;
+  }
+
+  @keyframes nav-pill-pop {
+    0% { transform: none; }
+    40% { transform: scale(1.05, 1.12); }
+    100% { transform: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .apple-liquid-nav-indicator {
+      will-change: auto;
+    }
+
+    .apple-liquid-nav-indicator[data-popped] .apple-liquid-nav-indicator-surface {
+      animation: none;
+      transform: none;
+    }
   }
 
   .apple-liquid-nav-inactive {
-    @apply text-gray-700;
     background: transparent;
   }
 
   .apple-liquid-nav-inactive:hover {
     @apply text-gray-900;
-    background: rgba(255, 255, 255, 0.5);
-    transform: translateY(-1px);
+    background: rgba(120, 120, 128, 0.08);
+  }
+
+  .apple-liquid-nav-inactive:active {
+    transform: scale(0.96);
+  }
+
+  /* Navbar icons: one-shot motion when an item becomes active */
+  .nav-icon-briefcase,
+  .nav-icon-cap,
+  .nav-icon-cap-tassel,
+  .nav-icon-phone,
+  .nav-icon-chevron {
+    transform-box: view-box;
+  }
+
+  .nav-icon-briefcase {
+    transform-origin: 12px 2px;
+  }
+
+  [data-engaged] .nav-icon-briefcase {
+    animation: nav-icon-lift 0.7s cubic-bezier(0.3, 0.7, 0.4, 1);
+  }
+
+  .nav-icon-cap {
+    transform-origin: 12px 10px;
+  }
+
+  .nav-icon-cap-tassel {
+    transform-origin: 22px 10px;
+  }
+
+  [data-engaged] .nav-icon-cap {
+    animation: nav-icon-toss 0.6s cubic-bezier(0.3, 0.7, 0.4, 1);
+  }
+
+  [data-engaged] .nav-icon-cap-tassel {
+    animation: nav-icon-swing 0.9s ease-in-out 0.08s;
+  }
+
+  .nav-icon-phone {
+    transform-origin: 12px 12px;
+  }
+
+  .group[data-state='open'] .nav-icon-phone {
+    animation: nav-icon-ring 0.6s ease-in-out;
+  }
+
+  .nav-icon-chevron {
+    transform-origin: 12px 12px;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .group[data-state='open'] .nav-icon-chevron {
+    transform: rotate(180deg);
+  }
+
+  @keyframes nav-icon-lift {
+    0%, 100% { transform: none; }
+    30% { transform: translateY(-1.5px) rotate(-6deg); }
+    60% { transform: translateY(-0.5px) rotate(3deg); }
+    80% { transform: rotate(-1deg); }
+  }
+
+  @keyframes nav-icon-toss {
+    0%, 100% { transform: none; }
+    35% { transform: translateY(-2px) rotate(-5deg); }
+    70% { transform: translateY(0.5px) rotate(1deg); }
+  }
+
+  @keyframes nav-icon-swing {
+    0%, 100% { transform: none; }
+    25% { transform: rotate(22deg); }
+    50% { transform: rotate(-12deg); }
+    75% { transform: rotate(5deg); }
+  }
+
+  @keyframes nav-icon-ring {
+    0%, 100% { transform: none; }
+    20% { transform: rotate(-14deg); }
+    40% { transform: rotate(11deg); }
+    60% { transform: rotate(-7deg); }
+    80% { transform: rotate(3deg); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-engaged] .nav-icon-briefcase,
+    [data-engaged] .nav-icon-cap,
+    [data-engaged] .nav-icon-cap-tassel,
+    .group[data-state='open'] .nav-icon-phone {
+      animation: none !important;
+    }
+
+    .nav-icon-chevron {
+      transition: none;
+    }
+  }
+
+  /* Prominent glass for the navbar call to action: opaque tint with a glass rim */
+  .apple-liquid-nav-cta {
+    @apply text-white border-0;
+    background: linear-gradient(180deg, #2c2c2e 0%, #0a0a0a 100%);
+    box-shadow:
+      inset 0 1px 0.5px 0 rgba(255, 255, 255, 0.35),
+      inset 0 -1px 0.5px 0 rgba(255, 255, 255, 0.08),
+      inset 0 0 0 0.5px rgba(255, 255, 255, 0.1),
+      0 0 0 0.5px rgba(0, 0, 0, 0.3),
+      0 1px 2px 0 rgba(0, 0, 0, 0.2),
+      0 6px 16px -4px rgba(0, 0, 0, 0.35);
   }
 
   .apple-liquid-nav-button {
@@ -211,14 +387,32 @@ html {
     transform: translateY(-1px);
   }
 
-  .apple-liquid-dropdown {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    box-shadow: 
-      0 8px 32px 0 rgba(0, 0, 0, 0.12),
-      inset 0 1px 0 0 rgba(255, 255, 255, 0.6);
+  /* [role] raises specificity above the shadcn bg/border/shadow utilities */
+  .apple-liquid-dropdown[role='menu'] {
+    padding: 6px;
+    border: 0;
+    border-radius: 22px;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.7) 0%,
+      rgba(255, 255, 255, 0.55) 100%
+    );
+    -webkit-backdrop-filter: blur(20px) saturate(190%);
+    backdrop-filter: blur(20px) saturate(190%);
+    box-shadow:
+      inset 0 1px 0.5px 0 rgba(255, 255, 255, 0.95),
+      inset 0 0 16px 0 rgba(255, 255, 255, 0.45),
+      0 0 0 0.5px rgba(0, 0, 0, 0.08),
+      0 18px 40px -10px rgba(0, 0, 0, 0.22);
+  }
+
+  .apple-liquid-dropdown[role='menu'] [role='menuitem'] {
+    border-radius: 16px;
+    padding: 8px 12px;
+  }
+
+  .apple-liquid-dropdown[role='menu'] [role='menuitem']:focus {
+    background: rgba(120, 120, 128, 0.14);
   }
 
   .touch-manipulation {
@@ -228,5 +422,179 @@ html {
 
   .apple-liquid-nav {
     font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', sans-serif;
+  }
+
+  /* Footer: a frosted band over slowly drifting pastel light */
+  .footer-orbs {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  .footer-orb {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(64px);
+    opacity: 0.9;
+    will-change: transform;
+  }
+
+  .footer-orb-blue {
+    width: 26rem;
+    height: 26rem;
+    left: -6rem;
+    top: -4rem;
+    background: radial-gradient(circle, #a5c8fd 0%, rgba(165, 200, 253, 0) 70%);
+    animation: footer-drift-a 28s ease-in-out infinite alternate;
+  }
+
+  .footer-orb-lavender {
+    width: 30rem;
+    height: 30rem;
+    left: 38%;
+    top: 20%;
+    background: radial-gradient(circle, #cfc4fd 0%, rgba(207, 196, 253, 0) 70%);
+    animation: footer-drift-b 34s ease-in-out infinite alternate;
+  }
+
+  .footer-orb-peach {
+    width: 24rem;
+    height: 24rem;
+    right: -5rem;
+    bottom: -8rem;
+    background: radial-gradient(circle, #fed7aa 0%, rgba(254, 215, 170, 0) 70%);
+    animation: footer-drift-c 31s ease-in-out infinite alternate;
+  }
+
+  @keyframes footer-drift-a {
+    from { transform: translate3d(0, 0, 0) scale(1); }
+    to { transform: translate3d(14rem, 3rem, 0) scale(1.12); }
+  }
+
+  @keyframes footer-drift-b {
+    from { transform: translate3d(0, 0, 0) scale(1.05); }
+    to { transform: translate3d(-12rem, -4rem, 0) scale(0.92); }
+  }
+
+  @keyframes footer-drift-c {
+    from { transform: translate3d(0, 0, 0) scale(0.95); }
+    to { transform: translate3d(-10rem, -5rem, 0) scale(1.1); }
+  }
+
+  .footer-glass {
+    position: relative;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.55) 0%,
+      rgba(255, 255, 255, 0.35) 100%
+    );
+    -webkit-backdrop-filter: blur(24px) saturate(160%);
+    backdrop-filter: blur(24px) saturate(160%);
+    border-top: 0.5px solid rgba(0, 0, 0, 0.07);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  }
+
+  .footer-glass-pill {
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.7) 0%,
+      rgba(255, 255, 255, 0.45) 100%
+    );
+    box-shadow:
+      inset 0 1px 0.5px 0 rgba(255, 255, 255, 0.95),
+      inset 0 0 12px 0 rgba(255, 255, 255, 0.4),
+      0 0 0 0.5px rgba(0, 0, 0, 0.08),
+      0 6px 16px -6px rgba(0, 0, 0, 0.14);
+    transition:
+      transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1),
+      box-shadow 0.2s ease-out,
+      background 0.2s ease-out,
+      color 0.2s ease-out;
+  }
+
+  .footer-glass-pill:hover {
+    @apply text-gray-900;
+    background: linear-gradient(180deg, #ffffff 0%, rgba(255, 255, 255, 0.75) 100%);
+    box-shadow:
+      inset 0 1px 0.5px 0 rgba(255, 255, 255, 1),
+      inset 0 0 12px 0 rgba(255, 255, 255, 0.5),
+      0 0 0 0.5px rgba(0, 0, 0, 0.1),
+      0 10px 24px -8px rgba(0, 0, 0, 0.2);
+    transform: translateY(-1px);
+  }
+
+  .footer-glass-pill:active {
+    transform: scale(0.97);
+  }
+
+  .footer-glass-pill:focus-visible {
+    @apply outline-none ring-2 ring-gray-900/30 ring-offset-2 ring-offset-transparent;
+  }
+
+  .footer-reveal {
+    opacity: 0;
+    transform: translateY(12px);
+    transition:
+      opacity 0.7s ease-out,
+      transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .footer-reveal[data-visible] {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .footer-orb {
+      animation: none;
+    }
+
+    .footer-reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+
+    .footer-glass-pill,
+    .footer-glass-pill:hover,
+    .footer-glass-pill:active {
+      transform: none;
+    }
+  }
+
+  @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .footer-glass {
+      background: rgba(255, 255, 255, 0.85);
+    }
+  }
+
+  @media (prefers-reduced-transparency: reduce) {
+    .footer-glass {
+      background: rgba(255, 255, 255, 0.92);
+    }
+  }
+
+  /* Blog code blocks (rehype-pretty-code) */
+  [data-rehype-pretty-code-figure] {
+    @apply my-6 overflow-hidden rounded-lg border;
+  }
+
+  [data-rehype-pretty-code-figure] pre {
+    @apply my-0 rounded-none px-4 py-3 text-sm leading-relaxed;
+    font-family: var(--font-geist-mono), ui-monospace, monospace;
+  }
+
+  [data-rehype-pretty-code-figure] code {
+    @apply font-normal;
+  }
+
+  [data-rehype-pretty-code-title] {
+    @apply m-0 border-b bg-muted px-4 py-2 text-xs font-medium text-muted-foreground;
+    font-family: var(--font-geist-mono), ui-monospace, monospace;
+  }
+
+  .prose :not(pre) > code {
+    @apply rounded bg-muted px-1.5 py-0.5 text-[0.875em] font-medium;
   }
 }

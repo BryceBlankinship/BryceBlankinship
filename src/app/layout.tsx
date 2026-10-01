@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import { geistSans, geistMono } from "./fonts/fonts";
 import { constructMetadata } from "@/lib/metadata";
 import { Navbar } from "@/components/Navbar";
+import { Footer } from "@/components/Footer";
 import { JsonLd } from "@/components/JsonLd";
 
 export const metadata = constructMetadata();
@@ -34,14 +35,15 @@ export default function RootLayout({
         <meta name="geo.placename" content="New Jersey" />
       </head>
       <body
-        className={cn("antialiased", geistSans.variable, geistMono.variable)}
+        className={cn("antialiased flex min-h-screen flex-col", geistSans.variable, geistMono.variable)}
       >
         <GoogleAnalytics gaId={'G-P5NZ37X2JF'} />
         <JsonLd />
         <Navbar />
-        <main role="main">
+        <main role="main" className="flex flex-1 flex-col">
           {children}
         </main>
+        <Footer />
       </body>
     </html>
   );

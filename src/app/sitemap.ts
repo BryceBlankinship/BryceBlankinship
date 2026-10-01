@@ -1,5 +1,7 @@
 import { MetadataRoute } from 'next'
 
+import { getAllPosts } from '@/lib/blog'
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://www.bryceblankinship.com'
   
@@ -13,22 +15,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     // Section anchors for better indexing
     {
-      url: `${baseUrl}/#about-me`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
       url: `${baseUrl}/#experience`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/#skills`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.7,
     },
     {
       url: `${baseUrl}/#education`,
@@ -38,5 +28,22 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ]
 
-  return routes
+  const posts = getAllPosts()
+
+  const blogRoutes: MetadataRoute.Sitemap = [
+    {
+      url: `${baseUrl}/blog`,
+      lastModified: posts[0] ? new Date(posts[0].date) : new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    },
+    ...posts.map((post) => ({
+      url: `${baseUrl}/blog/${post.slug}`,
+      lastModified: new Date(post.updated ?? post.date),
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    })),
+  ]
+
+  return [...routes, ...blogRoutes]
 }

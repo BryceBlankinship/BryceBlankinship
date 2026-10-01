@@ -7,33 +7,56 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { JobImages } from "@/components/JobImages";
 import Link from "next/link";
 
-const jobs = [
+const startups = [
     {
-        role: "Co-Founder & Software Engineer",
-        company: "ButterPhone", // TODO: Replace with actual company name
-        logo: "/butterphone-logo.png", // TODO: Replace with actual logo
-        duration: "2025 - Present",
+        role: "Founder",
+        company: "Tiki",
+        logo: "/tiki.png",
+        duration: "2026 - Present",
         description:
             <div>
-                <p className="mb-2">Co-founder of ButterPhone, a startup that provides AI-powered phone calls for restaurants.</p>
+                <p className="mb-2">Built Tiki, software for independent insurance agencies that does the servicing work.</p>
                 <ul className="text-sm text-muted-foreground flex flex-col gap-1 ml-2">
                     <li>
-                        • ButterPhone takes orders, reservations, and payments for restaurants over the phone.
+                        • Sends ID cards, processes endorsements, and issues certificates of insurance
                     </li>
                     <li>
-                        • ButterPhone picks up every phone call in parallel, meaning there's never a missed call.
+                        • Drafts renewals and files call notes, and holds every send until the team approves it
                     </li>
                     <li>
-                        • ButterPhone learns from conversations with customers, and gives restaurants actionable insights to improve their business.
-                    </li>
-                    <li>
-                        • ButterPhone communicates with customers after their visit, and can recover dissatisfied customers that would not otherwise return, and also promote happy customers to leave a review online -- directly driving revenue.
+                        • Takes requests by email, phone, or the agency website
                     </li>
                 </ul>
             </div>,
-        link: "https://butterphone.com",
+        link: "https://trytiki.ai",
         images: [],
     },
+    // {
+    //     role: "Co-Founder & Software Engineer",
+    //     company: "ButterPhone", // TODO: Replace with actual company name
+    //     logo: "/butterphone-logo.png", // TODO: Replace with actual logo
+    //     duration: "2025 - Present",
+    //     description:
+    //         <div>
+    //             <p className="mb-2">Co-founder of ButterPhone, a startup that provides AI-powered phone calls for restaurants.</p>
+    //             <ul className="text-sm text-muted-foreground flex flex-col gap-1 ml-2">
+    //                 <li>
+    //                     • ButterPhone takes orders, reservations, and payments for restaurants over the phone.
+    //                 </li>
+    //                 <li>
+    //                     • ButterPhone picks up every phone call in parallel, meaning there's never a missed call.
+    //                 </li>
+    //                 <li>
+    //                     • ButterPhone learns from conversations with customers, and gives restaurants actionable insights to improve their business.
+    //                 </li>
+    //                 <li>
+    //                     • ButterPhone communicates with customers after their visit, and can recover dissatisfied customers that would not otherwise return, and also promote happy customers to leave a review online -- directly driving revenue.
+    //                 </li>
+    //             </ul>
+    //         </div>,
+    //     link: "https://butterphone.com",
+    //     images: [],
+    // },
     {
         role: "Technical Co-Founder",
         company: "PatentFlip", // TODO: Replace with actual company name
@@ -89,8 +112,23 @@ const jobs = [
         link: "https://lookio.io",
         images: [],
     },
+]
+
+const work = [
     {
-        role: "Software Engineer Intern",
+        role: "Incoming Software Engineer",
+        company: "The Home Depot",
+        logo: "/homedepotlogo.jpeg",
+        duration: "Jan 2027",
+        description:
+            <div>
+                <p className="mb-2">Joining The Home Depot full-time in January 2027.</p>
+            </div>,
+        link: "",
+        images: [],
+    },
+    {
+        role: "Software Engineer Intern (4x)",
         company: "The Home Depot", // TODO: Replace with actual company name
         logo: "/homedepotlogo.jpeg", // TODO: Replace with actual logo
         duration: "2022 - Present",
@@ -127,16 +165,16 @@ const jobs = [
     },
 ]
 
-export const Experience = () => {
+const JobList = ({ title, jobs }: { title: string; jobs: typeof startups }) => {
     return (
-        <Card id="experience" className="scroll-mt-20 md:scroll-mt-24">
+        <Card>
             <CardHeader className="flex flex-row justify-between items-baseline p-4 md:p-6 pb-3 md:pb-0">
-                <CardTitle className="text-xl md:text-2xl">Work Experience</CardTitle>
+                <CardTitle className="text-xl md:text-2xl">{title}</CardTitle>
             </CardHeader>
             <CardContent className="p-4 md:p-6 pt-0">
                 <ul className="space-y-6 md:space-y-8">
-                    {jobs.map((j, i) => (
-                        <li key={i} className="border-b last:border-b-0 pb-6 md:pb-8 last:pb-0">
+                    {jobs.map((j) => (
+                        <li key={`${j.company}-${j.role}`} className="border-b last:border-b-0 pb-6 md:pb-8 last:pb-0">
                             {/* Job Details */}
                             <div className="flex items-start space-x-3 md:space-x-4">
                                 <Image
@@ -182,5 +220,14 @@ export const Experience = () => {
                 </ul>
             </CardContent>
         </Card>
+    )
+}
+
+export const Experience = () => {
+    return (
+        <div id="experience" className="scroll-mt-20 md:scroll-mt-24 flex flex-col gap-4 md:gap-6">
+            <JobList title="Startups" jobs={startups} />
+            <JobList title="Work" jobs={work} />
+        </div>
     )
 }

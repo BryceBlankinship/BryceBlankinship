@@ -23,7 +23,7 @@ export const metadata: Metadata = {
 
 export default function NotFound() {
   return (
-    <div className="bg-background min-h-screen flex items-center justify-center">
+    <div className="bg-background flex-1 py-16 flex items-center justify-center px-4">
       <Card className="w-full max-w-md">
         <CardHeader>
           <CardTitle className="text-3xl font-bold text-center">
