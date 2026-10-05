@@ -31,6 +31,8 @@ export const JobImages = ({
 }: JobImagesProps) => {
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
+    if (images.length === 0) return null;
+
     return (
         <div className="mt-4 flex space-x-2 overflow-x-auto pb-2 w-full">
             {images.map((img, idx) => (

@@ -26,7 +26,6 @@ type NavItem = {
   name: string
   icon: ComponentType<AnimatedIconProps>
   sectionId: string
-  desktopOnly?: boolean
 }
 
 const navItems: NavItem[] = [
@@ -39,8 +38,6 @@ const navItems: NavItem[] = [
     name: 'Projects',
     sectionId: 'projects',
     icon: FolderIcon,
-    // Projects is only rendered in the desktop layout
-    desktopOnly: true,
   },
   {
     name: 'Education',
@@ -61,6 +58,7 @@ const PILL_DAMPING = 2 * Math.sqrt(PILL_STIFFNESS) * 1.2
 export const Navbar = () => {
   const pathname = usePathname()
   const isHomePage = pathname === '/'
+  const navRef = useRef<HTMLElement>(null)
   const wrapperRef = useRef<HTMLDivElement>(null)
   const navContainerRef = useRef<HTMLDivElement>(null)
   const [buttonWidth, setButtonWidth] = useState<number | undefined>(undefined)
@@ -158,6 +156,37 @@ export const Navbar = () => {
     [bumpProgrammaticScroll, getSectionOffset, getVisibleSectionElement, isHomePage, popIndicator]
   )
 
+  // iOS browser chrome can shift the visible viewport without moving the
+  // layout viewport that position: fixed uses. Keep the mobile bar in view.
+  useEffect(() => {
+    if (!isHomePage) return
+
+    const nav = navRef.current
+    const viewport = window.visualViewport
+    if (!nav || !viewport) return
+
+    let frame = 0
+    const updateTop = () => {
+      frame = 0
+      // Let the browser handle positioning normally during pinch zoom.
+      const top = viewport.scale === 1 ? Math.max(0, viewport.offsetTop) : 0
+      nav.style.setProperty('--nav-viewport-top', `${top}px`)
+    }
+    const scheduleUpdate = () => {
+      if (!frame) frame = requestAnimationFrame(updateTop)
+    }
+
+    updateTop()
+    viewport.addEventListener('resize', scheduleUpdate, { passive: true })
+    viewport.addEventListener('scroll', scheduleUpdate, { passive: true })
+    return () => {
+      cancelAnimationFrame(frame)
+      viewport.removeEventListener('resize', scheduleUpdate)
+      viewport.removeEventListener('scroll', scheduleUpdate)
+      nav.style.removeProperty('--nav-viewport-top')
+    }
+  }, [isHomePage])
+
   useEffect(() => {
     const updateWidth = () => {
       if (wrapperRef.current) {
@@ -236,6 +265,9 @@ export const Navbar = () => {
     window.addEventListener('scroll', scheduleUpdate, { passive: true })
     window.addEventListener('scrollend', onScrollEnd)
     window.addEventListener('resize', scheduleUpdate, { passive: true })
+    const viewport = window.visualViewport
+    viewport?.addEventListener('resize', scheduleUpdate, { passive: true })
+    viewport?.addEventListener('scroll', scheduleUpdate, { passive: true })
 
     return () => {
       cancelAnimationFrame(frame)
@@ -245,6 +277,8 @@ export const Navbar = () => {
       window.removeEventListener('scroll', scheduleUpdate)
       window.removeEventListener('scrollend', onScrollEnd)
       window.removeEventListener('resize', scheduleUpdate)
+      viewport?.removeEventListener('resize', scheduleUpdate)
+      viewport?.removeEventListener('scroll', scheduleUpdate)
     }
   }, [bumpProgrammaticScroll, getSectionOffset, getVisibleSectionElement, isHomePage])
 
@@ -252,11 +286,22 @@ export const Navbar = () => {
   // without reading layout again. Mobile labels expand and collapse, so the pill
   // tracks the active button directly until that layout animation finishes.
   useEffect(() => {
-    const indicator = indicatorRef.current
-    if (!indicator) return
-
     const motion = pillMotionRef.current
+    const indicator = indicatorRef.current
     let frame = 0
+
+    if (!activeSection) {
+      motion.x = 0
+      motion.w = 0
+      motion.vx = 0
+      motion.vw = 0
+      motion.placed = false
+      pillMovingRef.current = false
+      pendingSectionRef.current = null
+      return
+    }
+
+    if (!indicator) return
 
     const readTarget = () => {
       const activeButton = activeSection ? navRefs.current[activeSection] : null
@@ -383,7 +428,10 @@ export const Navbar = () => {
   }
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 px-3 pt-3 md:px-0 md:pt-0 md:top-4 md:left-4 md:right-4 md:max-w-screen-lg md:mx-auto md:bottom-auto bottom-0 pointer-events-none">
+    <nav
+      ref={navRef}
+      className="fixed top-[var(--nav-viewport-top,0px)] left-0 right-0 z-50 px-3 pt-[calc(0.75rem+env(safe-area-inset-top,0px))] md:px-0 md:pt-0 md:top-4 md:left-4 md:right-4 md:max-w-screen-lg md:mx-auto pointer-events-none"
+    >
       <div
         ref={navContainerRef}
         className="apple-liquid-nav pointer-events-auto"
@@ -393,16 +441,18 @@ export const Navbar = () => {
           {/* Left side - Navigation items */}
           <div className="relative flex items-center gap-1 sm:gap-2 md:gap-4">
             {/* Sliding indicator */}
-            <div
-              ref={indicatorRef}
-              className="apple-liquid-nav-indicator absolute h-11 pointer-events-none z-0"
-              style={{
-                transform: 'translate3d(0px,0,0)',
-                width: '0px',
-              }}
-            >
-              <span className="apple-liquid-nav-indicator-surface" />
-            </div>
+            {activeSection && (
+              <div
+                ref={indicatorRef}
+                className="apple-liquid-nav-indicator absolute h-11 pointer-events-none z-0"
+                style={{
+                  transform: 'translate3d(0px,0,0)',
+                  width: '0px',
+                }}
+              >
+                <span className="apple-liquid-nav-indicator-surface" />
+              </div>
+            )}
             {navItems.map((item) => {
               const Icon = item.icon
               const itemClassName = (isActive: boolean) =>
@@ -423,10 +473,7 @@ export const Navbar = () => {
                     navRefs.current[sectionId] = el
                   }}
                   onClick={() => scrollToSection(sectionId)}
-                  className={cn(
-                    itemClassName(activeSection === sectionId),
-                    item.desktopOnly && 'hidden md:flex'
-                  )}
+                  className={itemClassName(activeSection === sectionId)}
                 >
                   <Icon
                     engaged={activeSection === sectionId}
@@ -506,4 +553,3 @@ export const Navbar = () => {
     </nav>
   )
 }
-

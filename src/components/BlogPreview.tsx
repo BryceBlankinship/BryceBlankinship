@@ -20,7 +20,7 @@ export const BlogPreview = () => {
                     "group relative transition-colors hover:border-primary/30 hover:bg-muted/40 has-[h3_a:focus-visible]:ring-2 has-[h3_a:focus-visible]:ring-ring"
             )}
         >
-            <CardHeader className="flex flex-row justify-between items-baseline p-4 md:p-6 pb-3 md:pb-4">
+            <CardHeader className="flex flex-row justify-between items-baseline p-4 pb-4 md:p-6 md:pb-5">
                 <CardTitle className="text-xl md:text-2xl">Blog</CardTitle>
                 {latest && (
                     <Link
@@ -32,7 +32,7 @@ export const BlogPreview = () => {
                     </Link>
                 )}
             </CardHeader>
-            <CardContent className="p-4 md:p-6 pt-0">
+            <CardContent className="p-4 pt-0 md:p-6 md:pt-0">
                 {!latest ? (
                     <p className="text-sm md:text-base text-muted-foreground">
                         Posts are coming soon.

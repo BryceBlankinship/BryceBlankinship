@@ -7,8 +7,8 @@ import { cn } from '@/lib/utils'
 const TOP_OFFSET = 96
 const BOTTOM_OFFSET = 24
 
-// A sticky element taller than the viewport can never reveal its bottom, so
-// when the sidebar doesn't fit it pins by its bottom edge instead of its top.
+// Only pin a sidebar that fits below the navbar. Taller sidebars scroll
+// naturally so their top isn't pinned behind the navbar and all content is reachable.
 export const StickySidebar = ({ className, style, ...props }: ComponentProps<'aside'>) => {
   const ref = useRef<HTMLElement>(null)
 
@@ -17,8 +17,8 @@ export const StickySidebar = ({ className, style, ...props }: ComponentProps<'as
     if (!element) return
 
     const update = () => {
-      const fitTop = window.innerHeight - element.offsetHeight - BOTTOM_OFFSET
-      element.style.top = `${Math.min(TOP_OFFSET, fitTop)}px`
+      const fits = element.offsetHeight + TOP_OFFSET + BOTTOM_OFFSET <= window.innerHeight
+      element.style.position = fits ? 'sticky' : 'static'
     }
 
     update()
@@ -34,7 +34,7 @@ export const StickySidebar = ({ className, style, ...props }: ComponentProps<'as
   return (
     <aside
       ref={ref}
-      className={cn('sticky self-start', className)}
+      className={cn('sticky self-start z-0', className)}
       style={{ top: TOP_OFFSET, ...style }}
       {...props}
     />

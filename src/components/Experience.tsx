@@ -1,11 +1,6 @@
-import Image from "next/image";
-
-import { CalendarDays, ExternalLink } from "lucide-react";
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-
+import { CardEntryHeader } from "@/components/CardEntryHeader";
 import { JobImages } from "@/components/JobImages";
-import Link from "next/link";
 
 const startups = [
     {
@@ -16,15 +11,15 @@ const startups = [
         description:
             <div>
                 <p className="mb-2">Built Tiki, software for independent insurance agencies that does the servicing work.</p>
-                <ul className="text-sm text-muted-foreground flex flex-col gap-1 ml-2">
+                <ul className="list-disc space-y-1.5 pl-5 text-muted-foreground marker:text-muted-foreground/70">
                     <li>
-                        • Sends ID cards, processes endorsements, and issues certificates of insurance
+                        Sends ID cards, processes endorsements, and issues certificates of insurance
                     </li>
                     <li>
-                        • Drafts renewals and files call notes, and holds every send until the team approves it
+                        Drafts renewals and files call notes, and holds every send until the team approves it
                     </li>
                     <li>
-                        • Takes requests by email, phone, or the agency website
+                        Takes requests by email, phone, or the agency website
                     </li>
                 </ul>
             </div>,
@@ -65,18 +60,18 @@ const startups = [
         description:
             <div>
                 <p className="mb-2">Developed PatentFlip, a marketplace for buying and selling patents.</p>
-                <ul className="text-sm text-muted-foreground flex flex-col gap-1 ml-2">
+                <ul className="list-disc space-y-1.5 pl-5 text-muted-foreground marker:text-muted-foreground/70">
                     <li>
-                        • Adapted quickly to changing product requirements & features
+                        Adapted quickly to changing product requirements & features
                     </li>
                     <li>
-                        • Worked with stakeholders directly as the sole Software Engineer
+                        Worked with stakeholders directly as the sole Software Engineer
                     </li>
                     <li>
-                        • Consulted stakeholders on hiring a UX designer
+                        Consulted stakeholders on hiring a UX designer
                     </li>
                     <li>
-                        • Provisioned the entire application infrastructure in Google Cloud
+                        Provisioned the entire application infrastructure in Google Cloud
                     </li>
                 </ul>
             </div>,
@@ -91,21 +86,21 @@ const startups = [
         description:
             <div>
                 <p className="mb-2">Developed Lookio, a social media auditor that creates insights for employers.</p>
-                <ul className="text-sm text-muted-foreground flex flex-col gap-1 ml-2">
+                <ul className="list-disc space-y-1.5 pl-5 text-muted-foreground marker:text-muted-foreground/70">
                     <li>
-                        • Developed robust web scrapers that run on a distributed residential proxy network
+                        Developed robust web scrapers that run on a distributed residential proxy network
                     </li>
                     <li>
-                        • Fine-tuned various LLMs for document extraction & sentiment analysis
+                        Fine-tuned various LLMs for document extraction & sentiment analysis
                     </li>
                     <li>
-                        • Worked with stakeholders directly as the sole Software Engineer
+                        Worked with stakeholders directly as the sole Software Engineer
                     </li>
                     <li>
-                        • Consulted stakeholders on hiring a UX designer
+                        Consulted stakeholders on hiring a UX designer
                     </li>
                     <li>
-                        • Provisioned the entire application infrastructure in Google Cloud
+                        Provisioned the entire application infrastructure in Google Cloud
                     </li>
                 </ul>
             </div>,
@@ -135,15 +130,15 @@ const work = [
         description:
             <div>
                 <p className="mb-2">Working across multiple teams within the Pricing organization.</p>
-                <ul className="text-sm text-muted-foreground flex flex-col gap-1 ml-2">
+                <ul className="list-disc space-y-1.5 pl-5 text-muted-foreground marker:text-muted-foreground/70">
                     <li>
-                        • Managed deployments for the PaCMan team
+                        Managed deployments for the PaCMan team
                     </li>
                     <li>
-                        • Helped shape the tech stack for Merch UX Architecture
+                        Helped shape the tech stack for Merch UX Architecture
                     </li>
                     <li>
-                        • Managed two Software Engineers on a UI migration effort spanning over 20 frontends
+                        Managed two Software Engineers on a UI migration effort spanning over 20 frontends
                     </li>
                 </ul>
             </div>,
@@ -168,46 +163,22 @@ const work = [
 const JobList = ({ title, jobs }: { title: string; jobs: typeof startups }) => {
     return (
         <Card>
-            <CardHeader className="flex flex-row justify-between items-baseline p-4 md:p-6 pb-3 md:pb-0">
+            <CardHeader className="p-4 pb-4 md:p-6 md:pb-5">
                 <CardTitle className="text-xl md:text-2xl">{title}</CardTitle>
             </CardHeader>
-            <CardContent className="p-4 md:p-6 pt-0">
-                <ul className="space-y-6 md:space-y-8">
+            <CardContent className="p-4 pt-0 md:p-6 md:pt-0">
+                <ul className="divide-y divide-border">
                     {jobs.map((j) => (
-                        <li key={`${j.company}-${j.role}`} className="border-b last:border-b-0 pb-6 md:pb-8 last:pb-0">
-                            {/* Job Details */}
-                            <div className="flex items-start space-x-3 md:space-x-4">
-                                <Image
-                                    src={j.logo}
-                                    alt={`${j.company} company logo`}
-                                    width={40}
-                                    height={40}
-                                    className="rounded-md object-cover flex-shrink-0"
-                                />
-                                <div className="flex-1 min-w-0">
-                                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 sm:gap-4">
-                                        <div className="flex-1 min-w-0">
-                                            <h3 className="font-semibold text-base md:text-lg">
-                                                {j.role}
-                                            </h3>
-                                            <p className="text-sm text-muted-foreground mt-1">
-                                                <span className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
-                                                    <span>{j.company}</span>
-                                                    {j.link && <Link href={j.link} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-sm text-primary hover:underline w-fit"                                                >
-                                                        View Product
-                                                        <ExternalLink className="inline-block size-3" />
-                                                    </Link>}
-                                                </span>
-                                            </p>
-                                        </div>
-                                        <p className="text-xs text-muted-foreground flex items-center sm:flex-shrink-0 sm:mt-0.5">
-                                            <CalendarDays className="size-3 mr-1.5 flex-shrink-0" />
-                                            <span className="whitespace-nowrap">{j.duration}</span>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="text-sm leading-relaxed mt-3 md:mt-2">{j.description}</div>
+                        <li key={`${j.company}-${j.role}`} className="py-5 first:pt-0 last:pb-0 md:py-6">
+                            <CardEntryHeader
+                                title={j.role}
+                                organization={j.company}
+                                logo={j.logo}
+                                duration={j.duration}
+                                href={j.link}
+                                linkLabel="View Product"
+                            />
+                            <div className="mt-3 text-sm leading-relaxed [&_p:last-child]:mb-0">{j.description}</div>
                             {/* Job Images */}
                             <JobImages
                                 role={j.role}

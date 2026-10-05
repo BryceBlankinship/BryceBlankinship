@@ -1,11 +1,6 @@
-import Image from "next/image";
-
-import { CalendarDays, ExternalLink } from "lucide-react";
-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-
+import { CardEntryHeader } from "@/components/CardEntryHeader";
 import { JobImages } from "@/components/JobImages";
-import Link from "next/link";
 
 const jobs = [
     {
@@ -78,48 +73,24 @@ const jobs = [
 export const Websites = () => {
     return (
         <Card id="projects" className="scroll-mt-20 md:scroll-mt-24">
-            <CardHeader className="flex flex-col justify-between items-baseline p-4 md:p-6 pb-3 md:pb-0">
+            <CardHeader className="p-4 pb-4 md:p-6 md:pb-5">
                 <CardTitle className="text-xl md:text-2xl">Freelanced Websites</CardTitle>
                 <CardDescription className="text-sm text-muted-foreground">I've built several websites for small businesses. All my clients come from referrals.</CardDescription>
             </CardHeader>
 
-            <CardContent className="p-4 md:p-6 pt-0">
-                <ul className="space-y-6 md:space-y-8">
+            <CardContent className="p-4 pt-0 md:p-6 md:pt-0">
+                <ul className="divide-y divide-border">
                     {jobs.map((j, i) => (
-                        <li key={i} className="border-b last:border-b-0 pb-6 md:pb-8 last:pb-0">
-                            {/* Job Details */}
-                            <div className="flex items-start space-x-3 md:space-x-4">
-                                <Image
-                                    src={j.logo}
-                                    alt={j.company}
-                                    width={40}
-                                    height={40}
-                                    className="rounded-md object-contain flex-shrink-0 w-10 h-10"
-                                />
-                                <div className="flex-1 min-w-0">
-                                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 sm:gap-4">
-                                        <div className="flex-1 min-w-0">
-                                            <h3 className="font-semibold text-base md:text-lg">
-                                                {j.role}
-                                            </h3>
-                                            <p className="text-sm text-muted-foreground mt-1">
-                                                <span className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
-                                                    <span>{j.company}</span>
-                                                    {j.link && <Link href={j.link} target="_blank" className="flex items-center gap-1.5 text-sm text-primary hover:underline w-fit"                                                >
-                                                        View Website
-                                                        <ExternalLink className="inline-block size-3" />
-                                                    </Link>}
-                                                </span>
-                                            </p>
-                                        </div>
-                                        <p className="text-xs text-muted-foreground flex items-center sm:flex-shrink-0 sm:mt-0.5">
-                                            <CalendarDays className="size-3 mr-1.5 flex-shrink-0" />
-                                            <span className="whitespace-nowrap">{j.duration}</span>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="text-sm leading-relaxed mt-3 md:mt-2">{j.description}</div>
+                        <li key={i} className="py-5 first:pt-0 last:pb-0 md:py-6">
+                            <CardEntryHeader
+                                title={j.role}
+                                organization={j.company}
+                                logo={j.logo}
+                                duration={j.duration}
+                                href={j.link}
+                                linkLabel="View Website"
+                            />
+                            <div className="mt-3 text-sm leading-relaxed [&_p:last-child]:mb-0">{j.description}</div>
                             {/* Job Images */}
                             <JobImages
                                 role={j.role}
